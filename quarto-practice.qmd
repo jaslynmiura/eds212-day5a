@@ -1,0 +1,61 @@
+---
+title: "Quarto Practice"
+author: "Jaslyn Miura"
+format: html
+execute: 
+  warning: false
+---
+
+Suppressing warnings and messages JUST for this code chunk
+```{r}
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+```
+
+Running code , but not showing code or output
+```{r}
+#| include: false
+
+# Return the first 6 lines of `starwars` ----
+head(starwars)
+
+# Check the dimensions ----
+dim(starwars)
+
+```
+Showing output, but not code
+```{r}
+#| warning: false
+#| echo: false
+
+ggplot(data = starwars, aes(x = height, y = mass, color = mass)) + 
+  geom_point() +
+  labs(x = "Height (cm)",
+       y = "Mass (kg)")
+```
+Showing only code and output.
+```{r}
+#| warning: false
+#| fig-cap: "caption text"
+#| fig-alt: "figure alt text"
+
+ggplot(data = starwars, aes(x = height)) + 
+  geom_histogram(color = "gold", fill = "purple3")
+
+```
+
+Find summary stats for Star Wars charatcers
+```{r}
+
+sw_height_mean <- mean(starwars$height, na.rm = TRUE)
+sw_height_median <- median(starwars$height, na.rm = TRUE)
+sw_height_var <- var(starwars$height, na.rm = TRUE)
+sw_height_sd <- sd(starwars$height, na.rm = TRUE)
+
+
+```
+
+The mean height of the characters in Star Wars is `r round(sw_height_mean, 1)` centimeters.
